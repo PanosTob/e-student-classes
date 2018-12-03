@@ -40,10 +40,8 @@
 		
 		$stmt->bind_param("issiisss", $_REQUEST["am"], $other_students_information[0], $other_students_information[1], intval($other_students_information[2]), $_REQUEST["is_teacher"], $_REQUEST["username"], $_REQUEST["password"], $_REQUEST["email"]);
 		if($stmt->execute()){
-			die("PETIXE TO INSERT");
 			header('Location: main_window.php');
 		}else{
-			die("DEN PETIXE TO INSERT");
 			header('Location: index.php?wrong_fields=1');
 		}
 	}
