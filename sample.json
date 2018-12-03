@@ -1,10 +1,10 @@
 {
-	Students:[
+	"Students":[
 		{
 			"AM":"144001",
 			"Name":"Mpampis",
 			"Surname":"Enas",
-			"Semester":"1"
+			"Semester":"9"
 		},
 		{
 			"AM":"144002",
@@ -37,31 +37,30 @@
 			"Semester":"5"
 		}
 	],
-	Courses:[
+	"Courses":[
 		{
 			"Name":"Diktia",
-			"Eksamino":"5",
+			"Eksamino":"5"
 		},
 		{
 			"Name":"Prolog",
-			"Eksamino":"4",
+			"Eksamino":"4"
 		},
 		{
 			"Name":"DomesDedomenon",
-			"Eksamino":"3",
+			"Eksamino":"3"
 		},
 		{
 			"Name":"LeitourgikaSistimata",
-			"Eksamino":"2",
+			"Eksamino":"2"
 		},
 		{
 			"Name":"EisagogiStinPliroforiki",
-			"Eksamino":"1",
+			"Eksamino":"1"
 		},
 		{
 			"Name":"Adise",
-			"Eksamino":"5",
-		},
+			"Eksamino":"5"
+		}
 	]
-	
 }
