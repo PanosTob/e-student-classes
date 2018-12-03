@@ -30,12 +30,12 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 	
 	<!-- Custom styles for this template -->
-    <link href="css/business-casual.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
 	
 	<script>
-		$(".sidebar-brand a").click(e){
+		$(".sidebar-brand a").click(function (e){
 			e.preventDefault();
-		};
+		});
 	</script>
 
   </head>

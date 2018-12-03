@@ -146,7 +146,8 @@ p {
 	text-decoration: none;
 }
 .sidebar-brand,a:hover{
-	
+	color: #ffff;
+	text-decoration: none;
 }
 
 #SemesterCourses{
