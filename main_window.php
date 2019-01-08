@@ -1,3 +1,19 @@
+<?php
+session_start();
+if(!isset($_SESSION['username'])){
+	header("Location:index.php");
+}
+require_once("db_connect.php");
+$sql = "select name,img_course from courses where semester=?";
+$stmt = $mysql->prepare($sql);
+$stmt->bind_param("i",$_SESSION['semester']);
+$stmt->execute();
+$result = $stmt->get_result();
+while($row = $result->fetch_assoc()){
+	$courses[] = $row['name'];
+	$img_courses[$row['name']] = $row['img_course'];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +24,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Business Casual - Start Bootstrap Theme</title>
+    <title>E-Student-classes</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -33,14 +49,22 @@
     <link href="css/styles.css" rel="stylesheet">
 	
 	<script>
-		$(".sidebar-brand a").click(function (e){
-			e.preventDefault();
+		$(function(){
+			$(".sidebar-brand a").click(function (e){
+				e.preventDefault();
+			});
+			$("#logoutspan").click(function(){
+				window.location.assign("logout.php")
+			});
 		});
 	</script>
 
   </head>
   
   <body>
+	<div>
+		<span id="logoutspan">Αποσύνδεση</span>
+	</div>
 	<div id="carnavContainer" class="container">
 		<div class="row">
 			<div id="myCarousel" class="carousel slide col-lg-9 col-md-9 col-s-12 col-xs-12">
@@ -83,11 +107,15 @@
       </div>
 	  <div class="row">
 		<div id="SemesterCourses">
-			<h2 id="semesterTitle">Μαθήματα ? Εξαμήνου</h4>
+			<h2 id="semesterTitle">Μαθήματα <?php echo $_SESSION['semester']; ?>ου Εξαμήνου</h4>
 			<ul id="coursesList">
-				<li class="course col-lg-4"><span>Ασφάλεια Πληροφοριακών Συστημάτων</span><img src="https://aetos.it.teithe.gr/~iliou/cs4601/Greekchapterlogo.gif"></li>
-				<li class="course col-lg-4"><span>Δίκτυα Η/Υ</span><img src="http://liomas.gr/external/eclass-images/Diktia_Hlektronikon_1.jpg"></li>
-				<li class="course col-lg-4"><span>Γραφικά Υπολογιστών</span><img src="http://iiwm.teikav.edu.gr/iinew/wp-content/uploads/2015/08/grafika.png"></li>
+				<?php
+					if(is_array($courses)){
+						foreach($courses as $course){
+							echo '<li class="course col-lg-4"><span>'.$course.'</span><img src="'.$img_courses[$course].'"></li>';
+						}
+					}
+				?>
 			</ul>
 		</div>
 	  </div>

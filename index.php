@@ -1,8 +1,11 @@
 <?php
+	$from_failed_subscription = 0;
+	$from_failed_login = 0;
 	if(isset($_REQUEST["wrong_fields"]))
-		$from_failed_subscription = $_REQUEST["wrong_fields"];
-	else
-		$from_failed_subscription = 0;
+		$from_failed_subscription = 1;
+	
+	if(isset($_REQUEST["wrong_credentials"]))
+		$from_failed_login = 1;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +17,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Business Casual - Start Bootstrap Theme</title>
+<title>E-Student-classes</title>
 
 <!-- Bootstrap core CSS -->
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -49,10 +52,26 @@
 	$(function(){
 		<?php 
 			if($from_failed_subscription){
-				echo 'var messgDiv = $("<div class=col-xs-6>ΣΥΜΠΛΗΡΩΣΤΕ ΟΛΑ ΤΑ ΣΤΟΙΧΕΙΑ ΤΗΣ ΦΟΡΜΑΣ ΣΩΣΤΑ</div>");
-					  $("#formHeadings").append(messgDiv);
+				echo 'var messgSDiv = $("<div id=smthWrongMessg class=col-xs-6>ΣΥΜΠΛΗΡΩΣΤΕ ΟΛΑ ΤΑ ΣΤΟΙΧΕΙΑ ΤΗΣ ΦΟΡΜΑΣ ΣΩΣΤΑ</div>");
+					  $("#formHeadings").append(messgSDiv);
 					  $("#register-form-link").trigger( "click" );
 					 ';
+		?>
+				$("#login-form-link").click(function(){
+					$("#smthWrongMessg").remove();					
+				});
+		<?php
+			}
+			if($from_failed_login){
+				echo 'var messgLDiv = $("<div id=smthWrongMessg class=col-xs-6>ΛΑΘΟΣ ΣΤΟΙΧΕΙΑ ΣΥΝΔΕΣΗΣ</div>");
+					  $("#formHeadings").append(messgLDiv);
+					  $("#login-form-link").trigger( "click" );
+					 ';
+		?>
+				$("#register-form-link").click(function(){
+					$("#smthWrongMessg").remove();					
+				});
+		<?php
 			}
 		?>
 	});
@@ -85,7 +104,7 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
-								<form id="login-form" action="main_window.php" method="post" role="form" style="display: block;">
+								<form id="login-form" action="login.php" method="post" role="form" style="display: block;">
 									<div class="form-group">
 										<input type="text" name="username" id="username1" tabindex="1" class="form-control" placeholder="Όνομα χρήστη" value="">
 									</div>

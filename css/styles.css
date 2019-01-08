@@ -163,7 +163,7 @@ p {
 }
 .course{
 	height:219.11px;
-	padding:0;
+	padding:10px;
 	margin:0;
 }
 .course img{
@@ -424,6 +424,49 @@ label{color: lightgray;}
 .forgot-password:hover, .forgot-password:focus{color: aqua;}
 .forgot-password{color:lightgray;}
 
+#logoutspan{
+	position:absolute;
+	right: 0;
+    top: 0;
+	color: #fff;
+	font-size: -webkit-xxx-large;
+	cursor: pointer;
+}
+#listWrapper{
+	width:100%;
+	max-width:1140px;
+	min-height:250px;
+	max-height:1000px;
+	border: 2px solid black;
+	background-color: white;
+	overflow-y: scroll;
+}
+.classImg{
+	position:relative;
+	top:0;
+	left:0;
+	z-index:1;
+}
+.checkedImg{
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:2;
+}
+#coursesList{
+	width:100%;
+}
+
+#coursesList  .course {
+	float:left;
+	cursor:pointer;
+}
+#coursesList  .course span{
+	position:relative;
+	top:0;
+	left:0;
+	z-index:1;
+}
 
 
 
