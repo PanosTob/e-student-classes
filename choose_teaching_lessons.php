@@ -78,7 +78,7 @@
 			<h4 id="lessonHeading">Διαλέξτε τα μαθήματα που θέλετε να διδάσκετε</h4>
 			<button id="continueB">Αποθήκευση</button>
 			<div id="listWrapper" class="col-lg-12 col-md-12 col-s-12 col-xs-12">
-				<ul id="coursesList">
+				<ul id="AllCoursesList">
 				<?php
 					if(is_array($courses)){
 						foreach($courses as $course){

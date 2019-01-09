@@ -153,13 +153,26 @@ p {
 #SemesterCourses{
 	background: #adcdde;
 	width:100%;
-	height:300px;
+	min-height:300px;
+	max-width:1170px;
+	overflow-x: scroll;
 }
 #coursesList{
 	display:flex;
 	padding:0;
 	margin:0;
 	list-style: none;
+}
+#AllCoursesList{
+	display:inline-block;
+	padding:0;
+	margin:0;
+	list-style: none;
+}
+#AllCoursesList .course{
+	margin-bottom:50px;
+	float:left;
+	cursor:pointer;
 }
 .course{
 	height:219.11px;
@@ -453,10 +466,6 @@ label{color: lightgray;}
 	left:0;
 	z-index:2;
 }
-#coursesList{
-	display: block;
-	width:100%;
-}
 
 #coursesList  .course {
 	margin-bottom:50px;
@@ -480,6 +489,25 @@ label{color: lightgray;}
 #continueB{
 	background-color : #42f4e5;
 	float:right;
+}
+#courseSelectionModal .modal-dialog{
+	font-size: x-large;
+	position: relative;
+    top: 50%;
+    left: 50%;
+    margin-top: -64.5px;
+    margin-left: -250px;
+}
+#courseSelectionModal button{
+	font-size: large;
+}
+#welcomeSign{
+	border-top: 2px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+	padding: 10px;
+	margin:0;
+	background-color:#c3f7e4;
 }
 
 

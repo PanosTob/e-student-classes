@@ -53,8 +53,24 @@ while($row = $result->fetch_assoc()){
 			$(".sidebar-brand a").click(function (e){
 				e.preventDefault();
 			});
+			$(".sidebar-nav li").click(function(){
+				window.location.assign($(this).find("a").attr("href"));
+			});
 			$("#logoutspan").click(function(){
 				window.location.assign("logout.php")
+			});
+			$(".course").click(function(){
+				if($("#courseSelectionModal").length){
+					$("#courseSelectionModal").find("button").click(function(ev){
+						if(ev.target.id=="learnChoiceButton")
+							window.location.assign("classWindow.php?teaching=0");
+						else if(ev.target.id=="teachChoiceButton")
+							window.location.assign("classWindow.php?teaching=1");
+					});
+					$("#courseSelectionModal").modal('show');
+				}else{
+					window.location.assign("classWindow.php");
+				}
 			});
 		});
 	</script>
@@ -67,6 +83,7 @@ while($row = $result->fetch_assoc()){
 	</div>
 	<div id="carnavContainer" class="container">
 		<div class="row">
+			<h3 id="welcomeSign">Καλώς Ορίσατε ως μαθητής<?php echo $_SESSION["is_teacher"]?' και δάσκαλος':'';?></h3>
 			<div id="myCarousel" class="carousel slide col-lg-9 col-md-9 col-s-12 col-xs-12">
 				<ol class="carousel-indicators">
 					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -95,12 +112,12 @@ while($row = $result->fetch_assoc()){
 			<div id="sidebar-wrapper" class="col-lg-3 col-md-3 col-s-12 col-xs-12">
 				<ul class="sidebar-nav">
 					<li class="sidebar-brand">
-						<a href="#">
+						<a href="listOfCourses.php">
 							Μαθήματα
 						</a>
 					</li>
 					<li class="sidebar-brand">
-						<a href="#">Φοιτητές</a>
+						<a href="listOfTeachers.php">Φοιτητές που διδάσκουν</a>
 					</li>
 				</ul>
 	      </div>
@@ -119,5 +136,9 @@ while($row = $result->fetch_assoc()){
 			</ul>
 		</div>
 	  </div>
+	  <?php
+		if($_SESSION["is_teacher"])
+			require_once("courseSelModalCode.php");
+	  ?>
   </body>
 </html>
