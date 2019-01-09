@@ -436,7 +436,7 @@ label{color: lightgray;}
 	width:100%;
 	max-width:1140px;
 	min-height:250px;
-	max-height:1000px;
+	max-height:700px;
 	border: 2px solid black;
 	background-color: white;
 	overflow-y: scroll;
@@ -454,10 +454,12 @@ label{color: lightgray;}
 	z-index:2;
 }
 #coursesList{
+	display: block;
 	width:100%;
 }
 
 #coursesList  .course {
+	margin-bottom:50px;
 	float:left;
 	cursor:pointer;
 }
@@ -467,6 +469,17 @@ label{color: lightgray;}
 	left:0;
 	z-index:1;
 }
-
+#lessonHeading{
+	border-top: 2px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    background-color: yellow;
+    padding: 10px;
+	margin:0;
+}
+#continueB{
+	background-color : #42f4e5;
+	float:right;
+}
 
 

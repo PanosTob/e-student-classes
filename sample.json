@@ -4,13 +4,13 @@
 			"AM":"144001",
 			"Name":"Mpampis",
 			"Surname":"Enas",
-			"Semester":"8"
+			"Semester":"1"
 		},
 		{
 			"AM":"144002",
 			"Name":"Makis",
 			"Surname":"Dyo",
-			"Semester":"6"
+			"Semester":"2"
 		},
 		{
 			"AM":"134003",
@@ -22,7 +22,7 @@
 			"AM":"134004",
 			"Name":"Sakis",
 			"Surname":"Tessera",
-			"Semester":"3"
+			"Semester":"4"
 		},
 		{
 			"AM":"124005",
@@ -34,7 +34,7 @@
 			"AM":"124006",
 			"Name":"Nikos",
 			"Surname":"Eksi",
-			"Semester":"5"
+			"Semester":"6"
 		}
 	],
 	"Courses":[

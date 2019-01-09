@@ -49,12 +49,34 @@
 			$(".course").click(function(){
 				$(this).find(".checkedImg").toggle();
 			});
+			
+			$("#continueB").click(function(){
+				var courses_names = [];
+				$("#coursesList").find(".checkedImg:visible").siblings("span").each(function(){
+					courses_names.push($(this).text());
+				});
+				$.ajax({
+					method: "POST",
+					url: 'insertCourses.php',
+					data:{
+						coursesArray: courses_names
+					},
+					success: function(responseText){
+						if(responseText.indexOf("Successfully")!==-1)
+							window.location.replace("main_window.php");
+						else if(responseText.indexOf("Failed")!==-1)
+							window.location.replace("choose_teaching_lessons.php?errorCourses=1");
+					}
+				});
+			});
 		});
 	</script>
 </head>
 <body>
 	<div class="container">
 		<div class="row">
+			<h4 id="lessonHeading">Διαλέξτε τα μαθήματα που θέλετε να διδάσκετε</h4>
+			<button id="continueB">Αποθήκευση</button>
 			<div id="listWrapper" class="col-lg-12 col-md-12 col-s-12 col-xs-12">
 				<ul id="coursesList">
 				<?php
