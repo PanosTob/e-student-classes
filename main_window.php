@@ -63,18 +63,17 @@ while($row = $result->fetch_assoc()){
 				if($("#courseSelectionModal").length){
 					$("#courseSelectionModal").find("button").click(function(ev){
 						if(ev.target.id=="learnChoiceButton")
-							window.location.assign("classWindow.php?teaching=0");
+							window.location.assign("choose_teacher.php");
 						else if(ev.target.id=="teachChoiceButton")
-							window.location.assign("classWindow.php?teaching=1");
+							window.location.assign("waiting_room.php");
 					});
 					$("#courseSelectionModal").modal('show');
 				}else{
-					window.location.assign("classWindow.php");
+					window.location.assign("choose_teacher.php");
 				}
 			});
 		});
 	</script>
-
   </head>
   
   <body>

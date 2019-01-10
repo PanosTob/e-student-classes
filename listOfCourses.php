@@ -11,9 +11,9 @@
 	}
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
-		<meta charset="utf-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta name="description" content="">
 		<meta name="author" content="">
@@ -43,27 +43,27 @@
 		<link href="css/styles.css" rel="stylesheet">
 		
 		<script>
-		$(function(){
-			$(".course").click(function(){
-				if($("#courseSelectionModal").length){
-					$("#courseSelectionModal").find("button").click(function(ev){
-						if(ev.target.id=="learnChoiceButton")
-							window.location.assign("classWindow.php?teaching=0");
-						else if(ev.target.id=="teachChoiceButton")
-							window.location.assign("classWindow.php?teaching=1");
-					});
-					$("#courseSelectionModal").modal('show');
-				}else{
-					window.location.assign("classWindow.php");
-				}
+			$(function(){
+				$(".course").click(function(){
+					if($("#courseSelectionModal").length){
+						$("#courseSelectionModal").find("button").click(function(ev){
+							if(ev.target.id=="learnChoiceButton")
+								window.location.assign("choose_teacher.php");
+							else if(ev.target.id=="teachChoiceButton")
+								window.location.assign("waiting_room.php");
+						});
+						$("#courseSelectionModal").modal('show');
+					}else{
+						window.location.assign("choose_teacher.php");
+					}
+				});
 			});
-		});
 		</script>
 	</head>
 	<body>
 		<div class="container">
 			<div class="row">
-				<h4 id="lessonHeading">Επιλέξτε κάποιο μάθημα για να παρακολουθήσετε<?php echo $_SESSION["is_teacher"]?" ή να διδάξετε":"";?></h4>
+				<h4 id="lessonHeading">Ξ•Ο€ΞΉΞ»Ξ­ΞΎΟ„Ξµ ΞΊΞ¬Ο€ΞΏΞΉΞΏ ΞΌΞ¬ΞΈΞ·ΞΌΞ± Ξ³ΞΉΞ± Ξ½Ξ± Ο€Ξ±ΟΞ±ΞΊΞΏΞ»ΞΏΟ…ΞΈΞ®ΟƒΞµΟ„Ξµ<?php echo $_SESSION["is_teacher"]?" Ξ® Ξ½Ξ± Ξ΄ΞΉΞ΄Ξ¬ΞΎΞµΟ„Ξµ":"";?></h4>
 				<div id="listWrapper" class="col-lg-12 col-md-12 col-s-12 col-xs-12">
 					<ul id="AllCoursesList">
 					<?php
