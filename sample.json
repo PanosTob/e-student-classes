@@ -4,37 +4,50 @@
 			"AM":"144001",
 			"Name":"Mpampis",
 			"Surname":"Enas",
-			"Semester":"1"
+			"Semester":"1",
+			"Gender":"M"
 		},
 		{
 			"AM":"144002",
 			"Name":"Makis",
 			"Surname":"Dyo",
-			"Semester":"2"
+			"Semester":"2",
+			"Gender":"M"
 		},
 		{
 			"AM":"134003",
 			"Name":"Takis",
 			"Surname":"Tria",
-			"Semester":"3"
+			"Semester":"3",
+			"Gender":"M"
 		},
 		{
 			"AM":"134004",
 			"Name":"Sakis",
 			"Surname":"Tessera",
-			"Semester":"4"
+			"Semester":"4",
+			"Gender":"M"
 		},
 		{
 			"AM":"124005",
 			"Name":"Panos",
 			"Surname":"Pente",
-			"Semester":"5"
+			"Semester":"5",
+			"Gender":"M"
 		},
 		{
 			"AM":"124006",
 			"Name":"Nikos",
 			"Surname":"Eksi",
-			"Semester":"6"
+			"Semester":"6",
+			"Gender":"M"
+		}
+		{
+			"AM":"124007",
+			"Name":"Georgia",
+			"Surname":"Efta",
+			"Semester":"7",
+			"Gender":"F"
 		}
 	],
 	"Courses":[

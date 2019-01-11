@@ -4,6 +4,20 @@ if(!isset($_SESSION['username'])){
 	header("Location:index.php");
 }
 require_once("db_connect.php");
+if($_SESSION["is_teacher"]){ //EISAI DASKALOS
+	if(!$_SESSION["have_chosen_teaching_lessons"]){ // DEN EIXES EPILEKSEI MATHIMATA AKOMA
+		if(isset($_SESSION["came_from_choose_teaching_lessons"])){ // TWRA EPELEKSES MATHIMATA
+			$_SESSION["have_chosen_teaching_lessons"] = 1; //APOTHIKEUSE OTI EXEIS EPELEKSES
+			$sqlFind = "update students set have_chosen_teaching_lessons=? where username=?";
+			$stmtFind = $mysql->prepare($sqlFind);
+			$stmtFind->bind_param("is",$_SESSION["have_chosen_teaching_lessons"],$_SESSION["username"]);
+			$stmtFind->execute();
+			unset($_SESSION["came_from_choose_teaching_lessons"]);
+		}else // ELSE : DEN EPELEKSES OUTE TWRA...
+			header("Location:choose_teaching_lessons.php"); // PANE NA EPILEKSES	
+	}// ELSE : EIXES EPILEKSEI MATHIMATA...SINEXISE
+}
+
 $sql = "select name,img_course from courses where semester=?";
 $stmt = $mysql->prepare($sql);
 $stmt->bind_param("i",$_SESSION['semester']);
@@ -60,16 +74,20 @@ while($row = $result->fetch_assoc()){
 				window.location.assign("logout.php")
 			});
 			$(".course").click(function(){
+				var selected_course_name = $(this).find("span").text();
 				if($("#courseSelectionModal").length){
+					
 					$("#courseSelectionModal").find("button").click(function(ev){
 						if(ev.target.id=="learnChoiceButton")
-							window.location.assign("choose_teacher.php");
+							window.location.assign("choose_teacher.php?course="+selected_course_name);
 						else if(ev.target.id=="teachChoiceButton")
-							window.location.assign("waiting_room.php");
+							window.location.assign("waiting_room.php?course="+selected_course_name);
 					});
+					
 					$("#courseSelectionModal").modal('show');
+					
 				}else{
-					window.location.assign("choose_teacher.php");
+					window.location.assign("choose_teacher.php?course="+selected_course_name);
 				}
 			});
 		});

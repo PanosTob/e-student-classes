@@ -1,6 +1,6 @@
 <?php
-	session_start();
 	if(!empty($_REQUEST["am"]) and !empty($_REQUEST["username"]) and !empty($_REQUEST["email"]) and !empty($_REQUEST["password"]) and !empty($_REQUEST["confirm-password"])){
+	session_start();
 	require_once("db_connect.php");
 	$givenAM = $_REQUEST['am'];
 	
@@ -32,7 +32,7 @@
 		}
 	}
 	if($found_student){
-		$stmt = $mysql->prepare("INSERT INTO students (AM, firstname, lastname, curr_sem, is_teacher, username, password, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+		$stmt = $mysql->prepare("INSERT INTO students (AM, firstname, lastname, curr_sem, is_teacher, username, password, email, have_chosen_teaching_lessons, gender) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		
 		if(isset($_REQUEST["is_teacher"]))
 			$_REQUEST["is_teacher"] = 1;
@@ -41,9 +41,10 @@
 		
 		$_SESSION['username'] = $_REQUEST["username"];
 		$_SESSION['semester'] = $other_students_information[2];
-		$_SESSION['is_teacher']=1;
+		$_SESSION['is_teacher'] = $_REQUEST["is_teacher"];
+		$_SESSION['have_chosen_teaching_lessons'] = 0;
 		
-		$stmt->bind_param("issiisss", $_REQUEST["am"], $other_students_information[0], $other_students_information[1], intval($other_students_information[2]), $_REQUEST["is_teacher"], $_REQUEST["username"], $_REQUEST["password"], $_REQUEST["email"]);
+		$stmt->bind_param("issiisssis", $_REQUEST["am"], $other_students_information[0], $other_students_information[1], intval($other_students_information[2]), $_REQUEST["is_teacher"], $_REQUEST["username"], $_REQUEST["password"], $_REQUEST["email"], $_SESSION['have_chosen_teaching_lessons'], $other_students_information[3]);
 		if($stmt->execute()){
 			header($_REQUEST["is_teacher"]?'Location: choose_teaching_lessons.php':'Location: main_window.php');
 		}else{

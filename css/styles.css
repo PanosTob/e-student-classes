@@ -163,6 +163,17 @@ p {
 	margin:0;
 	list-style: none;
 }
+#AllTeachersList{
+	display:inline-block;
+	padding:0;
+	margin:0;
+	list-style: none;
+}
+#AllTeachersList .course{
+	margin-bottom:50px;
+	float:left;
+	cursor:pointer;
+}
 #AllCoursesList{
 	display:inline-block;
 	padding:0;
@@ -508,6 +519,14 @@ label{color: lightgray;}
 	padding: 10px;
 	margin:0;
 	background-color:#c3f7e4;
+}
+#teachersHeading{
+	border-top: 2px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    background-color: yellow;
+    padding: 10px;
+	margin:0;
 }
 
 

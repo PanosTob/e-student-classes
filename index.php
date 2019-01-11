@@ -149,7 +149,7 @@
 										<input type="password" name="confirm-password" id="confirm-password" tabindex="1" class="form-control" placeholder="Επικύρωση κωδικού">
 									</div>
 									<div class="form-group">
-										<label for="c1">DO YOU WANT TO BE A TEACHER <input type="checkbox" name="is_teacher" id="is_teacher"></label>
+										<label for="is_teacher">ΘΕΛΕΤΕ ΝΑ ΕΙΣΤΕ ΚΑΙ ΔΑΣΚΑΛΟΣ? <input type="checkbox" name="is_teacher" id="is_teacher"></label>
 									</div>
 									<div class="form-group">
 										<div class="row">

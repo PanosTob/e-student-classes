@@ -45,22 +45,38 @@
 		<script>
 			$(function(){
 				$(".course").click(function(){
+					var selected_course_name = $(this).find("span").text();
 					if($("#courseSelectionModal").length){
 						$("#courseSelectionModal").find("button").click(function(ev){
 							if(ev.target.id=="learnChoiceButton")
-								window.location.assign("choose_teacher.php");
+								window.location.assign("choose_teacher.php?course="+selected_course_name);
 							else if(ev.target.id=="teachChoiceButton")
 								window.location.assign("waiting_room.php");
 						});
-						$("#courseSelectionModal").modal('show');
+						$.ajax({
+						method: "POST",
+						url: 'check_if_course_is_teached.php',
+						data:{
+							course_name: selected_course_name
+						},
+						success: function(responseText){
+							if(responseText.indexOf("not")!==-1)
+								window.location.assign("choose_teacher.php?course="+selected_course_name);
+							else
+								$("#courseSelectionModal").modal('show');
+						}
+					});	
 					}else{
-						window.location.assign("choose_teacher.php");
+						window.location.assign("choose_teacher.php?course="+selected_course_name);
 					}
 				});
 			});
 		</script>
 	</head>
 	<body>
+		<div>
+			<span id="logoutspan">Αποσύνδεση</span>
+		</div>
 		<div class="container">
 			<div class="row">
 				<h4 id="lessonHeading">Επιλέξτε κάποιο μάθημα για να παρακολουθήσετε<?php echo $_SESSION["is_teacher"]?" ή να διδάξετε":"";?></h4>

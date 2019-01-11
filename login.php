@@ -4,7 +4,7 @@ require_once("db_connect.php");
 if(!isset($_SESSION['username'])){
 	$u = $_REQUEST['username'];
 	$p = $_REQUEST['password'];
-	$sql = "select username,curr_sem,is_teacher,count(*) as ok from students where username=? and password=?";//and passwd_enc=PASSWORD(?)
+	$sql = "select username,curr_sem,is_teacher,have_chosen_teaching_lessons,count(*) as ok from students where username=? and password=?";//and passwd_enc=PASSWORD(?)
 	$stmt = $mysql->prepare($sql);
 	$stmt->bind_param("ss",$u,$p);
 	$stmt->execute();
@@ -14,6 +14,7 @@ if(!isset($_SESSION['username'])){
 			$_SESSION['username'] = $row['username'];
 			$_SESSION['semester'] = $row['curr_sem'];
 			$_SESSION['is_teacher'] = $row['is_teacher'];
+			$_SESSION['have_chosen_teaching_lessons'] = $row['have_chosen_teaching_lessons'];
 			header("Location:main_window.php");
 		}else{
 			header('Location: index.php?wrong_credentials=1');
