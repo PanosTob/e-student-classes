@@ -61,7 +61,6 @@ while($row = $result->fetch_assoc()){
 	
 	<!-- Custom styles for this template -->
     <link href="css/styles.css" rel="stylesheet">
-	
 	<script>
 		$(function(){
 			$(".sidebar-brand a").click(function (e){
@@ -71,7 +70,7 @@ while($row = $result->fetch_assoc()){
 				window.location.assign($(this).find("a").attr("href"));
 			});
 			$("#logoutspan").click(function(){
-				window.location.assign("logout.php")
+				window.location.replace("logout.php")
 			});
 			$(".course").click(function(){
 				var selected_course_name = $(this).find("span").text();
@@ -81,7 +80,7 @@ while($row = $result->fetch_assoc()){
 						if(ev.target.id=="learnChoiceButton")
 							window.location.assign("choose_teacher.php?course="+selected_course_name);
 						else if(ev.target.id=="teachChoiceButton")
-							window.location.assign("waiting_room.php?course="+selected_course_name);
+							window.location.assign("classWindow.php");
 					});
 					
 					$("#courseSelectionModal").modal('show');

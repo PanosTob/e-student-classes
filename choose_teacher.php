@@ -13,13 +13,14 @@
 	
 	//ENTOPISMOS FOITITWN-DASKALWN KAI VATHMWN TOUS SAUTO TO MATHIMA
 	$sql = "select s.username,s.firstname,s.gender,g.grade
-			from students s join grades g on s.AM=g.studentID
-			where exists (select t.courseID
-						  from teaches t
-						  where t.studentID=s.username)
-						  and g.courseID = ?";
+					from students s join grades g on s.AM=g.studentID
+					where exists (select t.courseID
+												from teaches t
+												where t.studentID=s.username)
+					and g.courseID = ?
+					and s.username not in(select username from students where username=?)";
 	$stmt = $mysql->prepare($sql);
-	$stmt->bind_param("i",$rowCheck["ID"]);
+	$stmt->bind_param("is",$rowCheck["ID"],$_SESSION["username"]);
 	$stmt->execute();
 	$result = $stmt->get_result();
 	while($row = $result->fetch_assoc()){
@@ -32,21 +33,21 @@
 <html lang="en">
 	<head>
 
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="">
-	<meta name="author" content="">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
 
-	<title>E-Student-classes</title>
+		<title>E-Student-classes</title>
 
-	<!-- Bootstrap core CSS -->
-	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<!-- Bootstrap core CSS -->
+		<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-	<!-- Custom fonts for this template -->
-	<link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+		<!-- Custom fonts for this template -->
+		<link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
 
-	<!-- Latest compiled and minified CSS -->
+		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
 		<!-- jQuery library -->
@@ -60,6 +61,19 @@
 		
 		<!-- Custom styles for this template -->
 		<link href="css/styles.css" rel="stylesheet">
+		
+		<script>
+			$(function(){
+				$("#logoutspan").click(function(){
+					window.location.replace("logout.php")
+				});
+				
+				$(".course").click(function(){
+					window.location.assign("classWindow.php");
+				});
+			});
+		</script>
+		
 	</head>
 	
 	<body>
@@ -84,9 +98,5 @@
 				</div>
 			</div>
 		</div>
-		<?php
-		if($_SESSION["is_teacher"])
-			require_once("courseSelModalCode.php");
-		?>
 	</body>
 </html>

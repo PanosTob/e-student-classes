@@ -2,8 +2,10 @@
 	session_start();
 	require_once("db_connect.php");
 	$sql = "select DISTINCT s.username,s.firstname,s.gender
-			from students s join teaches t on s.username=t.studentID";
+					from students s join teaches t on s.username=t.studentID
+					where s.username not in (select username from students where username=?)";
 	$stmt = $mysql->prepare($sql);
+	$stmt->bind_param("s",$_SESSION["username"]);
 	$stmt->execute();
 	$result = $stmt->get_result();
 	while($row = $result->fetch_assoc()){
@@ -45,7 +47,9 @@
 		
 		<script>
 			$(function(){
-				
+				$("#logoutspan").click(function(){
+					window.location.replace("logout.php")
+				});
 			});
 		</script>
 	</head>

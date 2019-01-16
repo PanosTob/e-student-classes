@@ -44,14 +44,21 @@
 		
 		<script>
 			$(function(){
+				
+				$("#logoutspan").click(function(){
+					window.location.replace("logout.php")
+				});
+				
 				$(".course").click(function(){
 					var selected_course_name = $(this).find("span").text();
 					if($("#courseSelectionModal").length){
 						$("#courseSelectionModal").find("button").click(function(ev){
 							if(ev.target.id=="learnChoiceButton")
 								window.location.assign("choose_teacher.php?course="+selected_course_name);
-							else if(ev.target.id=="teachChoiceButton")
-								window.location.assign("waiting_room.php");
+							else if(ev.target.id=="teachChoiceButton"){
+								var randomRoom = Math.floor(Math.random()*1000);
+								window.location.assign("classWindow.php");
+							}
 						});
 						$.ajax({
 						method: "POST",
@@ -73,6 +80,7 @@
 			});
 		</script>
 	</head>
+	
 	<body>
 		<div>
 			<span id="logoutspan">Αποσύνδεση</span>
